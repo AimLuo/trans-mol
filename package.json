@@ -22,16 +22,24 @@
   },
   "homepage": "https://github.com/CloudCraneCn/trans-mol#readme",
   "dependencies": {
+    "immer": "^9.0.12",
+    "immutable": "^4.0.0",
+    "molstar": "^3.8.0",
+    "qs": "^6.10.3",
     "react": "17.x.x",
-    "react-dom": "17.x.x"
+    "react-dom": "17.x.x",
+    "rxjs": "^7.5.5"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.5.0",
     "@types/react": "17.x.x",
     "@types/react-dom": "17.x.x",
+    "buffer": "^6.0.3",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "parcel": "^2.5.0",
-    "prettier": "^2.6.2"
+    "prettier": "^2.6.2",
+    "process": "^0.11.10"
   }
 }
