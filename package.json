@@ -1,0 +1,33 @@
+{
+  "name": "trans-mol",
+  "version": "1.0.0",
+  "description": "this is 2d and 3d molecule editor, algorithm platform",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CloudCraneCn/trans-mol.git"
+  },
+  "keywords": [
+    "2d",
+    "3d",
+    "molecule"
+  ],
+  "author": "",
+  "license": "none",
+  "bugs": {
+    "url": "https://github.com/CloudCraneCn/trans-mol/issues"
+  },
+  "homepage": "https://github.com/CloudCraneCn/trans-mol#readme",
+  "dependencies": {
+    "react": "17.x.x",
+    "react-dom": "17.x.x"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "2.5.0",
+    "@types/react": "17.x.x",
+    "@types/react-dom": "17.x.x",
+    "parcel": "^2.5.0"
+  }
+}
