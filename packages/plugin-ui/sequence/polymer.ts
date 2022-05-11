@@ -141,7 +141,8 @@ function createResidueQuery(
       )
     },
     residueTest: (ctx) => {
-      if (ctx.element.unit.kind === Unit.Kind.Atomic) {
+      // if (ctx.element.unit.kind === Unit.Kind.Atomic) {
+      if (ctx.element.unit.kind === 0) {
         return SP.residue.label_seq_id(ctx.element) === label_seq_id
       } else {
         return (
