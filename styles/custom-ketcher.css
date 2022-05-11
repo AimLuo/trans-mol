@@ -1,0 +1,24 @@
+.Ketcher-root {
+  min-width: auto;
+}
+button[title='Open... (⌘+O)'] {
+  display: none;
+}
+button[title='Save as... (⌘+S)'] {
+  display: none !important;
+}
+button[title='Save as... (⌘+S)'] + div {
+  display: none !important;
+}
+button[title='Paste (⌘+V)'] {
+  display: none !important;
+}
+button[title='Cut (⌘+X)'] {
+  display: none !important;
+}
+button[title='Redo (⌘+Shift+Z)'] + hr + div {
+  display: none !important;
+}
+button[title='Custom Templates (Shift+T)'] {
+  display: none !important;
+}

@@ -4,7 +4,8 @@
   "description": "this is 2d and 3d molecule editor, algorithm platform",
   "scripts": {
     "dev": "parcel pages/_document.html",
-    "lint": "eslint ./ --ext js,jsx,ts,tsx --fix"
+    "lint": "eslint ./ --ext js,jsx,ts,tsx --fix",
+    "dev:test": "parcel pages/test.html"
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,11 @@
   },
   "homepage": "https://github.com/CloudCraneCn/trans-mol#readme",
   "dependencies": {
+    "antd": "^4.20.2",
     "immer": "^9.0.12",
     "immutable": "^4.0.0",
+    "ketcher-react": "^2.4.2",
+    "ketcher-standalone": "^1.3.1",
     "molstar": "^3.8.0",
     "qs": "^6.10.3",
     "react": "17.x.x",
@@ -31,15 +35,23 @@
     "rxjs": "^7.5.5"
   },
   "devDependencies": {
+    "@parcel/core": "^2.5.0",
     "@parcel/transformer-sass": "2.5.0",
     "@types/react": "17.x.x",
     "@types/react-dom": "17.x.x",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "assert": "^2.0.0",
     "buffer": "^6.0.3",
     "eslint": "^8.15.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "parcel": "^2.5.0",
     "prettier": "^2.6.2",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "prop-types": "^15.8.1",
+    "querystring-es3": "^0.2.1",
+    "typescript": "^4.6.4",
+    "url": "^0.11.0"
   }
 }

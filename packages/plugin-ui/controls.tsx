@@ -1,10 +1,3 @@
-/**
- * Copyright (c) 2018-2022 mol* contributors, licensed under MIT, See LICENSE file for more info.
- *
- * @author David Sehnal <david.sehnal@gmail.com>
- * @author Alexander Rose <alexander.rose@weirdbyte.de>
- */
-
 import { PluginCommands } from 'molstar/lib/mol-plugin/commands'
 import { PluginConfig } from 'molstar/lib/mol-plugin/config'
 import { UpdateTrajectory } from 'molstar/lib/mol-plugin-state/actions/structure'
@@ -459,8 +452,8 @@ export class DefaultStructureTools extends PluginUIComponent {
           <VolumeStreamingControls />
         )}
         <VolumeSourceControls />
-
-        <CustomStructureControls />
+        {/* TODO: 目前在报错，后期还原 */}
+        {/* <CustomStructureControls /> */}
       </>
     )
   }

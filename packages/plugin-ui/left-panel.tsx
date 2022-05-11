@@ -1,16 +1,13 @@
-/**
- * Copyright (c) 2019-2022 mol* contributors, licensed under MIT, See LICENSE file for more info.
- *
- * @author David Sehnal <david.sehnal@gmail.com>
- * @author Alexander Rose <alexander.rose@weirdbyte.de>
- */
-
 import { Canvas3DParams } from 'molstar/lib/mol-canvas3d/canvas3d'
 import { PluginCommands } from 'molstar/lib/mol-plugin/commands'
 import { LeftPanelTabName } from 'molstar/lib/mol-plugin/layout'
 import { StateTransform } from 'molstar/lib/mol-state'
 import { ParamDefinition as PD } from 'molstar/lib/mol-util/param-definition'
 import * as React from 'react'
+
+import Ketcher from '~/containers/Ketcher'
+import { ketcherContext } from '~/containers/Ketcher/context'
+import MolFunction from '~/containers/MolFunction'
 
 import { PluginUIComponent } from './base'
 import { IconButton, SectionHeader } from './controls/common'
@@ -24,7 +21,7 @@ import {
 } from './controls/icons'
 import { ParameterControls } from './controls/parameters'
 import { StateObjectActions } from './state/actions'
-import { RemoteStateSnapshots, StateSnapshots } from './state/snapshots'
+import { StateSnapshots } from './state/snapshots'
 import { StateTree } from './state/tree'
 import { HelpContent } from './viewport/help'
 
@@ -55,7 +52,9 @@ export class LeftPanelControls extends PluginUIComponent<
   {},
   { tab: LeftPanelTabName }
 > {
-  state = { tab: this.plugin.behaviors.layout.leftPanelTabName.value }
+  state = {
+    tab: this.plugin.behaviors.layout.leftPanelTabName.value,
+  }
 
   componentDidMount() {
     this.subscribe(this.plugin.behaviors.layout.leftPanelTabName, (tab) => {
@@ -80,7 +79,9 @@ export class LeftPanelControls extends PluginUIComponent<
       if (state.cells.size === 1) this.set('root')
     })
   }
-
+  handleInit = (ketcher) => {
+    ketcherContext.setKetcher(ketcher)
+  }
   set = (tab: LeftPanelTabName) => {
     if (this.state.tab === tab) {
       this.setState({ tab: 'none' }, () =>
@@ -117,6 +118,7 @@ export class LeftPanelControls extends PluginUIComponent<
     root: (
       <>
         <SectionHeader icon={HomeOutlinedSvg} title='Home' />
+        <MolFunction plugin={this.plugin} />
         <StateObjectActions
           state={this.plugin.state.data}
           nodeRef={StateTransform.RootRef}
@@ -125,9 +127,10 @@ export class LeftPanelControls extends PluginUIComponent<
           alwaysExpandFirst={true}
         />
         <CustomImportControls />
-        {this.plugin.spec.components?.remoteState !== 'none' && (
+        {/* {this.plugin.spec.components?.remoteState !== 'none' && (
           <RemoteStateSnapshots listOnly />
-        )}
+        )} */}
+        <Ketcher onInit={this.handleInit} />
       </>
     ),
     data: (

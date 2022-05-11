@@ -1,63 +1,62 @@
-import 'molstar/lib/mol-util/polyfill';
+import 'molstar/lib/mol-util/polyfill'
 
-import { ANVILMembraneOrientation } from 'molstar/lib/extensions/anvil/behavior';
-import { CellPack } from 'molstar/lib/extensions/cellpack';
-import { DnatcoConfalPyramids } from 'molstar/lib/extensions/dnatco';
-import { G3DFormat, G3dProvider } from 'molstar/lib/extensions/g3d/format';
-import { GeometryExport } from 'molstar/lib/extensions/geo-export';
-import { MAQualityAssessment } from 'molstar/lib/extensions/model-archive/quality-assessment/behavior';
+import { ANVILMembraneOrientation } from 'molstar/lib/extensions/anvil/behavior'
+import { CellPack } from 'molstar/lib/extensions/cellpack'
+import { DnatcoConfalPyramids } from 'molstar/lib/extensions/dnatco'
+import { G3DFormat, G3dProvider } from 'molstar/lib/extensions/g3d/format'
+import { GeometryExport } from 'molstar/lib/extensions/geo-export'
+import { MAQualityAssessment } from 'molstar/lib/extensions/model-archive/quality-assessment/behavior'
 import {
   QualityAssessmentPLDDTPreset,
   QualityAssessmentQmeanPreset,
-} from 'molstar/lib/extensions/model-archive/quality-assessment/behavior';
-import { QualityAssessment } from 'molstar/lib/extensions/model-archive/quality-assessment/prop';
-import { ModelExport } from 'molstar/lib/extensions/model-export';
-import { Mp4Export } from 'molstar/lib/extensions/mp4-export';
-import { PDBeStructureQualityReport } from 'molstar/lib/extensions/pdbe';
+} from 'molstar/lib/extensions/model-archive/quality-assessment/behavior'
+import { QualityAssessment } from 'molstar/lib/extensions/model-archive/quality-assessment/prop'
+import { ModelExport } from 'molstar/lib/extensions/model-export'
+import { Mp4Export } from 'molstar/lib/extensions/mp4-export'
+import { PDBeStructureQualityReport } from 'molstar/lib/extensions/pdbe'
 import {
   RCSBAssemblySymmetry,
   RCSBValidationReport,
-} from 'molstar/lib/extensions/rcsb';
-import { ZenodoImport } from 'molstar/lib/extensions/zenodo';
-import { Volume } from 'molstar/lib/mol-model/volume';
-import { PluginCommands } from 'molstar/lib/mol-plugin/commands';
-import { PluginConfig } from 'molstar/lib/mol-plugin/config';
-import { PluginLayoutControlsDisplay } from 'molstar/lib/mol-plugin/layout';
-import { PluginSpec } from 'molstar/lib/mol-plugin/spec';
-import { PluginState } from 'molstar/lib/mol-plugin/state';
+} from 'molstar/lib/extensions/rcsb'
+import { ZenodoImport } from 'molstar/lib/extensions/zenodo'
+import { Volume } from 'molstar/lib/mol-model/volume'
+import { PluginCommands } from 'molstar/lib/mol-plugin/commands'
+import { PluginConfig } from 'molstar/lib/mol-plugin/config'
+import { PluginLayoutControlsDisplay } from 'molstar/lib/mol-plugin/layout'
+import { PluginSpec } from 'molstar/lib/mol-plugin/spec'
+import { PluginState } from 'molstar/lib/mol-plugin/state'
 import {
   DownloadStructure,
   PdbDownloadProvider,
-} from 'molstar/lib/mol-plugin-state/actions/structure';
-import { DownloadDensity } from 'molstar/lib/mol-plugin-state/actions/volume';
-import { PresetTrajectoryHierarchy } from 'molstar/lib/mol-plugin-state/builder/structure/hierarchy-preset';
+} from 'molstar/lib/mol-plugin-state/actions/structure'
+import { DownloadDensity } from 'molstar/lib/mol-plugin-state/actions/volume'
+import { PresetTrajectoryHierarchy } from 'molstar/lib/mol-plugin-state/builder/structure/hierarchy-preset'
 import {
   PresetStructureRepresentations,
   StructureRepresentationPresetProvider,
-} from 'molstar/lib/mol-plugin-state/builder/structure/representation-preset';
-import { BuiltInCoordinatesFormat } from 'molstar/lib/mol-plugin-state/formats/coordinates';
-import { DataFormatProvider } from 'molstar/lib/mol-plugin-state/formats/provider';
-import { BuiltInTopologyFormat } from 'molstar/lib/mol-plugin-state/formats/topology';
-import { BuiltInTrajectoryFormat } from 'molstar/lib/mol-plugin-state/formats/trajectory';
-import { BuildInVolumeFormat } from 'molstar/lib/mol-plugin-state/formats/volume';
-import { createVolumeRepresentationParams } from 'molstar/lib/mol-plugin-state/helpers/volume-representation-params';
-import { PluginStateObject } from 'molstar/lib/mol-plugin-state/objects';
-import { StateTransforms } from 'molstar/lib/mol-plugin-state/transforms';
-import { TrajectoryFromModelAndCoordinates } from 'molstar/lib/mol-plugin-state/transforms/model';
-import { StateObjectRef, StateObjectSelector } from 'molstar/lib/mol-state';
-import { Asset } from 'molstar/lib/mol-util/assets';
-import { Color } from 'molstar/lib/mol-util/color';
-import { ObjectKeys } from 'molstar/lib/mol-util/type-helpers';
-import { PluginUIContext } from '~/packages/plugin-ui/context';
-import { createPluginUI } from '~/packages/plugin-ui';
-import { DefaultPluginUISpec, PluginUISpec } from '~/packages/plugin-ui/spec';
+} from 'molstar/lib/mol-plugin-state/builder/structure/representation-preset'
+import { BuiltInCoordinatesFormat } from 'molstar/lib/mol-plugin-state/formats/coordinates'
+import { DataFormatProvider } from 'molstar/lib/mol-plugin-state/formats/provider'
+import { BuiltInTopologyFormat } from 'molstar/lib/mol-plugin-state/formats/topology'
+import { BuiltInTrajectoryFormat } from 'molstar/lib/mol-plugin-state/formats/trajectory'
+import { BuildInVolumeFormat } from 'molstar/lib/mol-plugin-state/formats/volume'
+import { createVolumeRepresentationParams } from 'molstar/lib/mol-plugin-state/helpers/volume-representation-params'
+import { PluginStateObject } from 'molstar/lib/mol-plugin-state/objects'
+import { StateTransforms } from 'molstar/lib/mol-plugin-state/transforms'
+import { TrajectoryFromModelAndCoordinates } from 'molstar/lib/mol-plugin-state/transforms/model'
+import { StateObjectRef, StateObjectSelector } from 'molstar/lib/mol-state'
+import { Asset } from 'molstar/lib/mol-util/assets'
+import { Color } from 'molstar/lib/mol-util/color'
+import { ObjectKeys } from 'molstar/lib/mol-util/type-helpers'
 
-import { ViewerElement } from './types';
+import { createPluginUI } from '~/packages/plugin-ui'
+import { PluginUIContext } from '~/packages/plugin-ui/context'
+import { DefaultPluginUISpec, PluginUISpec } from '~/packages/plugin-ui/spec'
 
-export { PLUGIN_VERSION as version } from 'molstar/lib/mol-plugin/version';
-export { setDebugMode, setProductionMode } from 'molstar/lib/mol-util/debug';
+export { PLUGIN_VERSION as version } from 'molstar/lib/mol-plugin/version'
+export { setDebugMode, setProductionMode } from 'molstar/lib/mol-util/debug'
 
-const CustomFormats = [['g3d', G3dProvider] as const];
+const CustomFormats = [['g3d', G3dProvider] as const]
 
 // TIP: 注释的几个在载入时会报错
 const Extensions = {
@@ -75,7 +74,7 @@ const Extensions = {
   // 'geo-export': PluginSpec.Behavior(GeometryExport),
   'ma-quality-assessment': PluginSpec.Behavior(MAQualityAssessment),
   'zenodo-import': PluginSpec.Behavior(ZenodoImport),
-};
+}
 
 const DefaultViewerOptions = {
   customFormats: CustomFormats as [string, DataFormatProvider][],
@@ -108,8 +107,8 @@ const DefaultViewerOptions = {
   volumeStreamingDisabled: !PluginConfig.VolumeStreaming.Enabled.defaultValue,
   pdbProvider: PluginConfig.Download.DefaultPdbProvider.defaultValue,
   emdbProvider: PluginConfig.Download.DefaultEmdbProvider.defaultValue,
-};
-type ViewerOptions = typeof DefaultViewerOptions;
+}
+type ViewerOptions = typeof DefaultViewerOptions
 
 export class Viewer {
   constructor(public plugin: PluginUIContext) {}
@@ -118,15 +117,15 @@ export class Viewer {
     elementOrId: string,
     options: Partial<ViewerOptions> = {}
   ) {
-    const definedOptions: { [p: string]: unknown } = {};
+    const definedOptions: { [p: string]: unknown } = {}
     // filter for defined properies only so the default values
     // are property applied
     for (const p of Object.keys(options) as (keyof ViewerOptions)[]) {
-      if (options[p] !== void 0) definedOptions[p] = options[p];
+      if (options[p] !== void 0) definedOptions[p] = options[p]
     }
 
-    const o: ViewerOptions = { ...DefaultViewerOptions, ...definedOptions };
-    const defaultSpec = DefaultPluginUISpec();
+    const o: ViewerOptions = { ...DefaultViewerOptions, ...definedOptions }
+    const defaultSpec = DefaultPluginUISpec()
 
     const spec: PluginUISpec = {
       actions: defaultSpec.actions,
@@ -183,34 +182,34 @@ export class Viewer {
           ViewerAutoPreset.id,
         ],
       ],
-    };
+    }
     const element =
       typeof elementOrId === 'string'
         ? document.getElementById(elementOrId)
-        : elementOrId;
+        : elementOrId
     if (!element)
-      throw new Error(`Could not get element with id '${elementOrId}'`);
+      throw new Error(`Could not get element with id '${elementOrId}'`)
     const plugin = await createPluginUI(element, spec, {
       onBeforeUIRender: (plugin) => {
         // the preset needs to be added before the UI renders otherwise
         // "Download Structure" wont be able to pick it up
         plugin.builders.structure.representation.registerPreset(
           ViewerAutoPreset
-        );
+        )
       },
-    });
-    return new Viewer(plugin);
+    })
+    return new Viewer(plugin)
   }
 
   setRemoteSnapshot(id: string) {
     const url = `${this.plugin.config.get(
       PluginConfig.State.CurrentServer
-    )}/get/${id}`;
-    return PluginCommands.State.Snapshots.Fetch(this.plugin, { url });
+    )}/get/${id}`
+    return PluginCommands.State.Snapshots.Fetch(this.plugin, { url })
   }
 
   loadSnapshotFromUrl(url: string, type: PluginState.SnapshotType) {
-    return PluginCommands.State.Snapshots.OpenUrl(this.plugin, { url, type });
+    return PluginCommands.State.Snapshots.OpenUrl(this.plugin, { url, type })
   }
 
   loadStructureFromUrl(
@@ -222,7 +221,7 @@ export class Viewer {
     const params = DownloadStructure.createDefaultParams(
       this.plugin.state.data.root.obj!,
       this.plugin
-    );
+    )
     return this.plugin.runTask(
       this.plugin.state.data.applyAction(DownloadStructure, {
         source: {
@@ -238,7 +237,7 @@ export class Viewer {
           },
         },
       })
-    );
+    )
   }
 
   async loadAllModelsOrAssemblyFromUrl(
@@ -247,16 +246,16 @@ export class Viewer {
     isBinary = false,
     options?: LoadStructureOptions
   ) {
-    const plugin = this.plugin;
+    const plugin = this.plugin
 
     const data = await plugin.builders.data.download(
       { url, isBinary },
       { state: { isGhost: true } }
-    );
+    )
     const trajectory = await plugin.builders.structure.parseTrajectory(
       data,
       format
-    );
+    )
 
     await this.plugin.builders.structure.hierarchy.applyPreset(
       trajectory,
@@ -265,7 +264,7 @@ export class Viewer {
         useDefaultIfSingleModel: true,
         representationPresetParams: options?.representationParams,
       }
-    );
+    )
   }
 
   async loadStructureFromData(
@@ -276,25 +275,25 @@ export class Viewer {
     const _data = await this.plugin.builders.data.rawData({
       data,
       label: options?.dataLabel,
-    });
+    })
     const trajectory = await this.plugin.builders.structure.parseTrajectory(
       _data,
       format
-    );
+    )
     await this.plugin.builders.structure.hierarchy.applyPreset(
       trajectory,
       'default'
-    );
+    )
   }
 
   loadPdb(pdb: string, options?: LoadStructureOptions) {
     const params = DownloadStructure.createDefaultParams(
       this.plugin.state.data.root.obj!,
       this.plugin
-    );
+    )
     const provider = this.plugin.config.get(
       PluginConfig.Download.DefaultPdbProvider
-    )!;
+    )!
     return this.plugin.runTask(
       this.plugin.state.data.applyAction(DownloadStructure, {
         source: {
@@ -314,14 +313,14 @@ export class Viewer {
           },
         },
       })
-    );
+    )
   }
 
   loadPdbDev(pdbDev: string) {
     const params = DownloadStructure.createDefaultParams(
       this.plugin.state.data.root.obj!,
       this.plugin
-    );
+    )
     return this.plugin.runTask(
       this.plugin.state.data.applyAction(DownloadStructure, {
         source: {
@@ -335,13 +334,13 @@ export class Viewer {
           },
         },
       })
-    );
+    )
   }
 
   loadEmdb(emdb: string, options?: { detail?: number }) {
     const provider = this.plugin.config.get(
       PluginConfig.Download.DefaultEmdbProvider
-    )!;
+    )!
     return this.plugin.runTask(
       this.plugin.state.data.applyAction(DownloadDensity, {
         source: {
@@ -355,14 +354,14 @@ export class Viewer {
           },
         },
       })
-    );
+    )
   }
 
   loadAlphaFoldDb(afdb: string) {
     const params = DownloadStructure.createDefaultParams(
       this.plugin.state.data.root.obj!,
       this.plugin
-    );
+    )
     return this.plugin.runTask(
       this.plugin.state.data.applyAction(DownloadStructure, {
         source: {
@@ -377,14 +376,14 @@ export class Viewer {
           },
         },
       })
-    );
+    )
   }
 
   loadModelArchive(id: string) {
     const params = DownloadStructure.createDefaultParams(
       this.plugin.state.data.root.obj!,
       this.plugin
-    );
+    )
     return this.plugin.runTask(
       this.plugin.state.data.applyAction(DownloadStructure, {
         source: {
@@ -395,7 +394,7 @@ export class Viewer {
           },
         },
       })
-    );
+    )
   }
 
   /**
@@ -446,43 +445,42 @@ export class Viewer {
     isovalues: VolumeIsovalueInfo[],
     options?: { entryId?: string | string[]; isLazy?: boolean }
   ) {
-    const plugin = this.plugin;
+    const plugin = this.plugin
 
     if (!plugin.dataFormats.get(format)) {
-      throw new Error(`Unknown density format: ${format}`);
+      throw new Error(`Unknown density format: ${format}`)
     }
 
     if (options?.isLazy) {
-      const update = this.plugin.build();
+      const update = this.plugin.build()
       update.toRoot().apply(StateTransforms.Data.LazyVolume, {
         url,
         format,
         entryId: options?.entryId,
         isBinary,
         isovalues: isovalues.map((v) => ({ alpha: 1, volumeIndex: 0, ...v })),
-      });
-      return update.commit();
+      })
+      return update.commit()
     }
 
     return plugin.dataTransaction(async () => {
       const data = await plugin.builders.data.download(
         { url, isBinary },
         { state: { isGhost: true } }
-      );
+      )
 
       const parsed = await plugin.dataFormats
         .get(format)!
-        .parse(plugin, data, { entryId: options?.entryId });
+        .parse(plugin, data, { entryId: options?.entryId })
       const firstVolume = (parsed.volume ||
-        parsed
-          .volumes[0]) as StateObjectSelector<PluginStateObject.Volume.Data>;
-      if (!firstVolume?.isOk) throw new Error('Failed to parse any volume.');
+        parsed.volumes[0]) as StateObjectSelector<PluginStateObject.Volume.Data>
+      if (!firstVolume?.isOk) throw new Error('Failed to parse any volume.')
 
-      const repr = plugin.build();
+      const repr = plugin.build()
       for (const iso of isovalues) {
         const volume: StateObjectSelector<PluginStateObject.Volume.Data> =
-          parsed.volumes?.[iso.volumeIndex ?? 0] ?? parsed.volume;
-        const volumeData = volume.cell!.obj!.data;
+          parsed.volumes?.[iso.volumeIndex ?? 0] ?? parsed.volume
+        const volumeData = volume.cell!.obj!.data
         repr.to(volume).apply(
           StateTransforms.Representation.VolumeRepresentation3D,
           createVolumeRepresentationParams(this.plugin, firstVolume.data!, {
@@ -498,11 +496,11 @@ export class Viewer {
             color: 'uniform',
             colorParams: { value: iso.color },
           })
-        );
+        )
       }
 
-      await repr.commit();
-    });
+      await repr.commit()
+    })
   }
 
   /**
@@ -514,9 +512,9 @@ export class Viewer {
    *  });
    */
   async loadTrajectory(params: LoadTrajectoryParams) {
-    const plugin = this.plugin;
+    const plugin = this.plugin
 
-    let model: StateObjectSelector, coords: StateObjectSelector;
+    let model: StateObjectSelector, coords: StateObjectSelector
 
     if (
       params.model.kind === 'model-data' ||
@@ -532,13 +530,13 @@ export class Viewer {
               url: params.model.url,
               isBinary: params.model.isBinary,
               label: params.modelLabel,
-            });
+            })
 
       const trajectory = await plugin.builders.structure.parseTrajectory(
         data,
         params.model.format ?? 'mmcif'
-      );
-      model = await plugin.builders.structure.createModel(trajectory);
+      )
+      model = await plugin.builders.structure.createModel(trajectory)
     } else {
       const data =
         params.model.kind === 'topology-data'
@@ -550,10 +548,10 @@ export class Viewer {
               url: params.model.url,
               isBinary: params.model.isBinary,
               label: params.modelLabel,
-            });
+            })
 
-      const provider = plugin.dataFormats.get(params.model.format);
-      model = await provider!.parse(plugin, data);
+      const provider = plugin.dataFormats.get(params.model.format)
+      model = await provider!.parse(plugin, data)
     }
 
     {
@@ -567,10 +565,10 @@ export class Viewer {
               url: params.coordinates.url,
               isBinary: params.coordinates.isBinary,
               label: params.coordinatesLabel,
-            });
+            })
 
-      const provider = plugin.dataFormats.get(params.coordinates.format);
-      coords = await provider!.parse(plugin, data);
+      const provider = plugin.dataFormats.get(params.coordinates.format)
+      coords = await provider!.parse(plugin, data)
     }
 
     const trajectory = await plugin
@@ -584,72 +582,72 @@ export class Viewer {
         },
         { dependsOn: [model.ref, coords.ref] }
       )
-      .commit();
+      .commit()
 
     const preset = await plugin.builders.structure.hierarchy.applyPreset(
       trajectory,
       params.preset ?? 'default'
-    );
+    )
 
-    return { model, coords, preset };
+    return { model, coords, preset }
   }
 
   handleResize() {
-    this.plugin.layout.events.updated.next(void 0);
+    this.plugin.layout.events.updated.next(void 0)
   }
 }
 
 export interface LoadStructureOptions {
-  representationParams?: StructureRepresentationPresetProvider.CommonParams;
+  representationParams?: StructureRepresentationPresetProvider.CommonParams
 }
 
 export interface VolumeIsovalueInfo {
-  type: 'absolute' | 'relative';
-  value: number;
-  color: Color;
-  alpha?: number;
-  volumeIndex?: number;
+  type: 'absolute' | 'relative'
+  value: number
+  color: Color
+  alpha?: number
+  volumeIndex?: number
 }
 
 export interface LoadTrajectoryParams {
   model:
     | {
-        kind: 'model-url';
-        url: string;
-        format?: BuiltInTrajectoryFormat /* mmcif */;
-        isBinary?: boolean;
+        kind: 'model-url'
+        url: string
+        format?: BuiltInTrajectoryFormat /* mmcif */
+        isBinary?: boolean
       }
     | {
-        kind: 'model-data';
-        data: string | number[] | ArrayBuffer | Uint8Array;
-        format?: BuiltInTrajectoryFormat /* mmcif */;
+        kind: 'model-data'
+        data: string | number[] | ArrayBuffer | Uint8Array
+        format?: BuiltInTrajectoryFormat /* mmcif */
       }
     | {
-        kind: 'topology-url';
-        url: string;
-        format: BuiltInTopologyFormat;
-        isBinary?: boolean;
+        kind: 'topology-url'
+        url: string
+        format: BuiltInTopologyFormat
+        isBinary?: boolean
       }
     | {
-        kind: 'topology-data';
-        data: string | number[] | ArrayBuffer | Uint8Array;
-        format: BuiltInTopologyFormat;
-      };
-  modelLabel?: string;
+        kind: 'topology-data'
+        data: string | number[] | ArrayBuffer | Uint8Array
+        format: BuiltInTopologyFormat
+      }
+  modelLabel?: string
   coordinates:
     | {
-        kind: 'coordinates-url';
-        url: string;
-        format: BuiltInCoordinatesFormat;
-        isBinary?: boolean;
+        kind: 'coordinates-url'
+        url: string
+        format: BuiltInCoordinatesFormat
+        isBinary?: boolean
       }
     | {
-        kind: 'coordinates-data';
-        data: string | number[] | ArrayBuffer | Uint8Array;
-        format: BuiltInCoordinatesFormat;
-      };
-  coordinatesLabel?: string;
-  preset?: keyof PresetTrajectoryHierarchy;
+        kind: 'coordinates-data'
+        data: string | number[] | ArrayBuffer | Uint8Array
+        format: BuiltInCoordinatesFormat
+      }
+  coordinatesLabel?: string
+  preset?: keyof PresetTrajectoryHierarchy
 }
 
 export const ViewerAutoPreset = StructureRepresentationPresetProvider({
@@ -664,31 +662,28 @@ export const ViewerAutoPreset = StructureRepresentationPresetProvider({
     return (
       !!a.data.models.some((m) => QualityAssessment.isApplicable(m, 'pLDDT')) ||
       !!a.data.models.some((m) => QualityAssessment.isApplicable(m, 'qmean'))
-    );
+    )
   },
   params: () => StructureRepresentationPresetProvider.CommonParams,
   async apply(ref, params, plugin) {
-    const structureCell = StateObjectRef.resolveAndCheck(
-      plugin.state.data,
-      ref
-    );
-    const structure = structureCell?.obj?.data;
-    if (!structureCell || !structure) return {};
+    const structureCell = StateObjectRef.resolveAndCheck(plugin.state.data, ref)
+    const structure = structureCell?.obj?.data
+    if (!structureCell || !structure) return {}
 
     if (
-      !!structure.models.some((m) => QualityAssessment.isApplicable(m, 'pLDDT'))
+      structure.models.some((m) => QualityAssessment.isApplicable(m, 'pLDDT'))
     ) {
-      return await QualityAssessmentPLDDTPreset.apply(ref, params, plugin);
+      return await QualityAssessmentPLDDTPreset.apply(ref, params, plugin)
     } else if (
-      !!structure.models.some((m) => QualityAssessment.isApplicable(m, 'qmean'))
+      structure.models.some((m) => QualityAssessment.isApplicable(m, 'qmean'))
     ) {
-      return await QualityAssessmentQmeanPreset.apply(ref, params, plugin);
+      return await QualityAssessmentQmeanPreset.apply(ref, params, plugin)
     } else {
       return await PresetStructureRepresentations.auto.apply(
         ref,
         params,
         plugin
-      );
+      )
     }
   },
-});
+})

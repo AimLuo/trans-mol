@@ -1,5 +1,5 @@
-import { getMolstarUserInitStatus } from './helper';
-import { Viewer, setDebugMode } from './core';
+import { setDebugMode, Viewer } from './core'
+import { getMolstarUserInitStatus } from './helper'
 
 export function createViewer(elementOrId: string) {
   const {
@@ -25,9 +25,9 @@ export function createViewer(elementOrId: string) {
     emdb,
     afdb,
     modelArchive,
-  } = getMolstarUserInitStatus();
+  } = getMolstarUserInitStatus()
 
-  if (debugMode) setDebugMode(debugMode);
+  if (debugMode) setDebugMode(debugMode)
 
   Viewer.create(elementOrId, {
     layoutShowControls: !hideControls,
@@ -45,21 +45,21 @@ export function createViewer(elementOrId: string) {
     enableWboit: disableWboit ? false : void 0, // use default value if disable-wboit is not set
     preferWebgl1: preferWebgl1 || void 0,
   }).then((viewer) => {
-    if (snapshotId) viewer.setRemoteSnapshot(snapshotId);
+    if (snapshotId) viewer.setRemoteSnapshot(snapshotId)
 
     if (snapshotUrl && snapshotUrlType)
-      viewer.loadSnapshotFromUrl(snapshotUrl, snapshotUrlType || 'molj');
+      viewer.loadSnapshotFromUrl(snapshotUrl, snapshotUrlType || 'molj')
 
     if (structureUrl)
       viewer.loadStructureFromUrl(
         structureUrl,
         structureUrlFormat,
         structureUrlIsBinary
-      );
-    if (pdb) viewer.loadPdb(pdb);
-    if (pdbDev) viewer.loadPdbDev(pdbDev);
-    if (emdb) viewer.loadEmdb(emdb);
-    if (afdb) viewer.loadAlphaFoldDb(afdb);
-    if (modelArchive) viewer.loadModelArchive(modelArchive);
-  });
+      )
+    if (pdb) viewer.loadPdb(pdb)
+    if (pdbDev) viewer.loadPdbDev(pdbDev)
+    if (emdb) viewer.loadEmdb(emdb)
+    if (afdb) viewer.loadAlphaFoldDb(afdb)
+    if (modelArchive) viewer.loadModelArchive(modelArchive)
+  })
 }
