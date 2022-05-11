@@ -4,8 +4,8 @@
   "description": "this is 2d and 3d molecule editor, algorithm platform",
   "scripts": {
     "dev": "parcel pages/_document.html",
-    "lint": "eslint ./ --ext js,jsx,ts,tsx --fix",
-    "dev:test": "parcel pages/test.html"
+    "build": "parcel build pages/_document.html",
+    "lint": "eslint ./ --ext js,jsx,ts,tsx --fix"
   },
   "repository": {
     "type": "git",
